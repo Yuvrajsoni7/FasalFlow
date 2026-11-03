@@ -1,0 +1,13 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+
+# Dependencies and builds (not used now, kept for future)
+node_modules/
+dist/
+.env
+.vercel

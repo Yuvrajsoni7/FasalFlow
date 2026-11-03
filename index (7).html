@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fasal Flow | Digitizing the Farm-to-Business Supply Chain</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%BE%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: dark;
+  --bg:#08170F;
+  --bg2:#0C1F15;
+  --card:#123222;
+  --card-deep:#0C2016;
+  --line:#1F4A34;
+  --line-strong:#2F7A52;
+  --violet:#2FBF7A;
+  --lav:#9BE8B8;
+  --silver:#E8F1EB;
+  --silver-dim:#B3C9BB;
+  --rose:#F29AB8;
+  --ink-on-silver:#07160e;
+  --serif:"Fraunces", Georgia, "Times New Roman", serif;
+  --sans:"Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--silver);
+  font-family:var(--sans); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--serif); font-weight:600; margin:0; line-height:1.12; letter-spacing:-0.01em}
+p{margin:0}
+a{color:var(--lav)}
+ul{margin:0; padding:0; list-style:none}
+:focus-visible{outline:2px solid var(--lav); outline-offset:3px; border-radius:6px}
+.wrap{max-width:1120px; margin:0 auto; padding:0 24px}
+section{scroll-margin-top:64px}
+.sec{padding:104px 0; border-top:1px solid rgba(47,122,82,.35)}
+.sec.alt{background:var(--bg2)}
+.sec-head{max-width:760px; margin-bottom:48px}
+.sec-head h2{font-size:clamp(32px,5vw,52px); color:var(--silver)}
+.sec-head p{margin-top:16px; color:var(--silver-dim); font-size:18px}
+.muted{color:var(--silver-dim)}
+.silver-text{
+  background:linear-gradient(180deg,#ffffff 0%,#E8F1EB 45%,#8fb5a0 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+
+/* Nav */
+.nav{
+  position:sticky; top:0; z-index:50;
+  background:rgba(8,23,15,.86); backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(47,122,82,.5);
+}
+.nav-in{display:flex; align-items:center; gap:24px; height:60px}
+.brand{font-family:var(--serif); font-weight:800; font-size:21px; color:var(--silver); text-decoration:none; white-space:nowrap}
+.links{display:flex; gap:4px; overflow-x:auto; scrollbar-width:none; flex:1}
+.links::-webkit-scrollbar{display:none}
+.links a{
+  color:var(--silver-dim); text-decoration:none; font-size:14.5px; font-weight:500;
+  padding:8px 12px; border-radius:999px; white-space:nowrap;
+  transition:color .2s, background .2s;
+}
+.links a:hover{color:var(--silver)}
+.links a.active{background:var(--silver); color:var(--ink-on-silver)}
+.progress{position:absolute; left:0; bottom:-1px; height:2px; width:0; background:linear-gradient(90deg,var(--violet),var(--silver))}
+
+/* Hero */
+.hero{
+  position:relative; overflow:hidden; padding:88px 0 72px;
+  background:
+    radial-gradient(900px 520px at 85% -10%, rgba(47,191,122,.32), transparent 60%),
+    radial-gradient(700px 420px at 0% 30%, rgba(47,122,82,.45), transparent 65%),
+    var(--bg);
+}
+.hero h1{
+  font-size:clamp(50px,13vw,164px); font-weight:800; letter-spacing:-0.035em; line-height:.95;
+}
+.hero .tagline{font-family:var(--serif); font-size:clamp(20px,3vw,32px); margin-top:26px; max-width:720px; color:var(--silver); font-weight:400}
+.hero .kicker{color:var(--lav); font-weight:600; font-size:15px; margin-bottom:22px}
+.hero-meta{display:flex; flex-wrap:wrap; gap:14px 36px; margin-top:34px; color:var(--silver-dim); font-size:16px}
+.hero-meta strong{color:var(--silver); font-weight:600}
+.cta-row{display:flex; flex-wrap:wrap; gap:12px; margin-top:34px}
+.btn{
+  display:inline-block; padding:13px 22px; border-radius:999px; font-weight:600; font-size:15.5px;
+  text-decoration:none; border:1px solid var(--line-strong); color:var(--silver);
+  transition:background .2s, transform .2s;
+}
+.btn:hover{background:rgba(47,191,122,.16)}
+.btn.primary{background:var(--silver); color:var(--ink-on-silver); border-color:var(--silver)}
+.btn.primary:hover{background:#fff}
+
+.flow-wrap{margin-top:72px}
+.flow-title{font-family:var(--serif); font-size:22px; margin-bottom:22px; color:var(--silver)}
+.flow{position:relative; display:grid; grid-template-columns:repeat(5,1fr); gap:16px}
+.flow::before{content:""; position:absolute; top:23px; left:10%; right:10%; height:2px; background:var(--line)}
+.flow::after{
+  content:""; position:absolute; top:23px; left:10%; height:2px; width:calc(var(--p,0) * 80%);
+  background:linear-gradient(90deg,var(--violet),var(--silver)); transition:width .9s ease;
+}
+.step{position:relative; z-index:1; text-align:center; padding:0 6px}
+.step .dot{
+  width:48px; height:48px; border-radius:50%; margin:0 auto 14px;
+  display:grid; place-items:center; font-weight:700; font-size:17px;
+  background:var(--bg); border:2px solid var(--line-strong); color:var(--silver-dim);
+  transition:all .5s;
+}
+.step.on .dot{background:var(--violet); border-color:var(--lav); color:var(--ink-on-silver); box-shadow:0 0 0 6px rgba(47,191,122,.2), 0 0 28px rgba(47,191,122,.55)}
+.step h3{font-size:17px; margin-bottom:6px; font-family:var(--sans); font-weight:600}
+.step p{font-size:14.5px; color:var(--silver-dim); line-height:1.5}
+
+.stat-strip{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:72px;
+  border:1px solid var(--line-strong); border-radius:24px; overflow:hidden;
+  background:linear-gradient(160deg,var(--card),var(--card-deep));
+}
+.stat-strip > div{padding:28px 26px; border-right:1px solid var(--line)}
+.stat-strip > div:last-child{border-right:0}
+.big{font-family:var(--serif); font-weight:800; font-size:clamp(34px,4.6vw,54px); line-height:1; color:var(--silver); letter-spacing:-0.02em}
+.big small{font-size:.5em; font-weight:600; color:var(--lav)}
+.stat-strip p{margin-top:10px; color:var(--silver-dim); font-size:14.5px; line-height:1.45}
+
+/* Generic cards */
+.card{
+  background:linear-gradient(160deg,var(--card),var(--card-deep));
+  border:1px solid var(--line); border-radius:20px; padding:28px;
+}
+.card h3{font-size:22px; margin-bottom:12px; color:var(--silver)}
+.card p, .card li{color:var(--silver-dim)}
+.card ul.pts li{position:relative; padding-left:20px; margin-top:10px}
+.card ul.pts li::before{content:""; position:absolute; left:2px; top:.72em; width:7px; height:7px; border-radius:50%; background:var(--violet)}
+.grid{display:grid; gap:20px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.callout{
+  margin-top:28px; padding:20px 26px; border-radius:16px;
+  background:rgba(47,191,122,.12); border:1px solid var(--line-strong); color:var(--silver);
+}
+.callout strong{color:var(--lav)}
+.tag{
+  display:inline-block; padding:5px 13px; border-radius:999px; font-size:13.5px; font-weight:600;
+  background:rgba(155,232,184,.14); color:var(--lav); margin-bottom:14px;
+}
+
+/* Vision */
+.vision-top{display:grid; grid-template-columns:1.1fr .9fr; gap:20px; align-items:stretch}
+.vision-nums{display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:22px}
+.vision-nums > div{padding:16px; border-radius:14px; background:rgba(8,23,15,.6); border:1px solid var(--line)}
+.vision-nums span{display:block; font-size:13.5px; color:var(--silver-dim); margin-top:6px; line-height:1.35}
+.drivers{margin-top:20px}
+.driver{padding:30px 28px; border-radius:24px; background:linear-gradient(160deg,#17402d,#0C2016); border:1px solid var(--line-strong)}
+.driver p{margin-top:14px; color:var(--silver-dim); font-size:15.5px}
+
+/* Team */
+.person{display:flex; gap:18px; align-items:center}
+.avatar{
+  flex:none; width:64px; height:64px; border-radius:50%; display:grid; place-items:center;
+  font-family:var(--serif); font-weight:800; font-size:24px; color:var(--ink-on-silver);
+  background:linear-gradient(140deg,#fff,#b7d9c4);
+}
+.person h3{margin:0; font-size:26px}
+.person p{color:var(--lav); font-weight:500; margin-top:4px}
+.roles{margin-top:20px}
+.roles .card{padding:22px}
+.roles h4{font-family:var(--sans); font-weight:600; font-size:17px; color:var(--silver); margin-bottom:6px}
+.roles p{font-size:15px}
+.roles-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:14px}
+
+/* Market */
+.chain{display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:22px 0 6px}
+.node{padding:7px 14px; border-radius:999px; font-size:14px; font-weight:600; border:1px solid var(--line-strong); color:var(--silver)}
+.node.mid{width:34px; height:34px; padding:0; display:grid; place-items:center; border-radius:50%; border-color:rgba(242,154,184,.55); color:var(--rose); background:rgba(242,154,184,.1)}
+.node.mid.faint{opacity:.4; border-style:dashed}
+.node.fsp{background:var(--violet); border-color:var(--lav); color:var(--ink-on-silver)}
+.node.buyer{background:var(--silver); color:var(--ink-on-silver); border-color:var(--silver)}
+.arrow{color:var(--silver-dim); font-size:14px}
+.card.bad{border-color:rgba(242,154,184,.35)}
+.card.good{border-color:var(--line-strong); background:linear-gradient(160deg,#17402d,#0C2016)}
+.chip-line{margin-top:20px; font-family:var(--serif); font-size:19px; color:var(--silver)}
+.bad .chip-line{color:var(--rose)}
+
+/* Quality */
+.qi{display:grid; grid-template-columns:1.25fr .75fr; gap:20px; align-items:start}
+.formula{
+  font-family:var(--serif); font-size:clamp(16px,2.3vw,24px); padding:20px 22px; border-radius:16px;
+  background:rgba(8,23,15,.7); border:1px solid var(--line-strong); color:var(--silver); overflow-x:auto; white-space:nowrap;
+}
+.formula-live{margin-top:8px; font-size:15px; color:var(--lav); overflow-x:auto; white-space:nowrap}
+.presets{display:flex; flex-wrap:wrap; gap:8px; margin:22px 0 6px; align-items:center}
+.presets span{color:var(--silver-dim); font-size:15px; margin-right:4px}
+.pill{
+  font:inherit; font-size:14.5px; font-weight:600; padding:8px 16px; border-radius:999px; cursor:pointer;
+  color:var(--silver); background:transparent; border:1px solid var(--line-strong);
+  transition:background .2s,color .2s;
+}
+.pill:hover{background:rgba(47,191,122,.16)}
+.pill[aria-selected="true"], .pill.on{background:var(--silver); color:var(--ink-on-silver); border-color:var(--silver)}
+.param{padding:18px 0; border-top:1px solid var(--line)}
+.param:first-of-type{border-top:0}
+.param-top{display:flex; justify-content:space-between; gap:12px; align-items:baseline}
+.param-top strong{font-family:var(--serif); font-size:19px; color:var(--silver); font-weight:600}
+.param-top output{font-family:var(--serif); font-size:24px; font-weight:800; color:var(--lav); min-width:2ch; text-align:right}
+.param p{font-size:14.5px; margin:4px 0 10px; color:var(--silver-dim)}
+.param .w{font-size:13.5px; color:var(--lav); font-weight:600}
+input[type=range]{width:100%; accent-color:var(--violet); height:28px; cursor:pointer}
+.gauge-card{position:sticky; top:84px; text-align:center}
+.gauge{width:100%; max-width:300px; margin:0 auto; display:block}
+.gauge-num{font-family:var(--serif); font-weight:800; font-size:64px; line-height:1; color:var(--silver); margin-top:-56px; position:relative}
+.gauge-grade{margin-top:8px; font-family:var(--serif); font-size:24px; color:var(--lav)}
+.gauge-use{margin-top:6px; color:var(--silver-dim); font-size:15px; min-height:46px}
+.tiers{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:26px}
+.tier{padding:20px; border-radius:16px; border:1px solid var(--line); background:rgba(8,23,15,.55); transition:all .3s}
+.tier.on{border-color:var(--lav); background:rgba(47,191,122,.2); box-shadow:0 0 0 1px var(--lav) inset}
+.tier h4{font-size:22px}
+.tier .r{color:var(--lav); font-weight:600; font-size:15px; margin:4px 0 8px}
+.tier p{font-size:14.5px; color:var(--silver-dim)}
+
+/* FSP fee range */
+.range-viz{margin-top:8px}
+.range-row{margin-top:22px}
+.range-row label{display:flex; justify-content:space-between; font-size:15px; color:var(--silver-dim); margin-bottom:8px}
+.range-row label b{color:var(--silver); font-weight:600}
+.track{position:relative; height:16px; border-radius:999px; background:rgba(31,74,52,.6)}
+.track i{position:absolute; top:0; bottom:0; border-radius:999px}
+.scale{display:flex; justify-content:space-between; font-size:12.5px; color:var(--silver-dim); margin-top:6px}
+
+/* Inclusion */
+.dots{display:grid; grid-template-columns:repeat(20,1fr); gap:5px; margin:20px 0 10px}
+.dots i{aspect-ratio:1; border-radius:50%; background:rgba(31,74,52,.8)}
+.dots i.on{background:var(--lav)}
+.inc-top{display:grid; grid-template-columns:.85fr 1.15fr; gap:20px; align-items:stretch; margin-bottom:20px}
+
+/* Economics */
+.eco-controls{display:flex; flex-wrap:wrap; gap:18px 32px; align-items:center; padding:22px 26px; border-radius:20px; background:rgba(8,23,15,.65); border:1px solid var(--line-strong); margin-bottom:22px}
+.eco-controls label{font-weight:600; color:var(--silver)}
+.eco-controls input[type=range]{flex:1; min-width:200px}
+.eco-controls output{font-family:var(--serif); font-size:28px; font-weight:800; color:var(--lav); min-width:120px; text-align:right}
+.ledger h3{font-size:24px}
+.ledger .sub{color:var(--silver-dim); font-size:14.5px; margin-bottom:18px}
+.row{display:flex; justify-content:space-between; gap:16px; padding:11px 0; border-top:1px solid var(--line)}
+.row span{color:var(--silver-dim); font-size:15.5px}
+.row b{font-family:var(--serif); font-weight:600; color:var(--silver); white-space:nowrap; font-size:18px}
+.stack{display:flex; height:22px; border-radius:999px; overflow:hidden; margin:18px 0 6px; background:var(--line)}
+.stack i{display:block; height:100%; transition:width .4s}
+.net{margin-top:14px; padding:18px 20px; border-radius:14px; background:rgba(232,241,235,.08); border:1px solid var(--line-strong)}
+.net .big{font-size:40px}
+.net p{color:var(--silver-dim); font-size:14.5px; margin-top:6px}
+.gain{
+  display:inline-block; margin-top:14px; padding:6px 14px; border-radius:999px; font-weight:700; font-size:15px;
+  background:var(--silver); color:var(--ink-on-silver);
+}
+
+/* Unit economics */
+.fees{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+.fee .big{font-size:56px}
+.fee h3{font-size:19px; margin:14px 0 8px}
+.fee p{font-size:15px; color:var(--silver-dim)}
+.sum{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px}
+.sum .card{background:linear-gradient(160deg,#1b4a34,#0C2016); border-color:var(--line-strong)}
+.sum .big{font-size:64px}
+.sum p{margin-top:12px}
+.bar6{display:flex; height:16px; border-radius:999px; overflow:hidden; margin-top:26px}
+.bar6 i{display:block; height:100%}
+
+/* Scale */
+.scale-controls{display:grid; grid-template-columns:1fr 1fr; gap:14px 32px; padding:22px 26px; border-radius:20px; background:rgba(8,23,15,.65); border:1px solid var(--line-strong); margin-bottom:22px}
+.sc label{display:flex; justify-content:space-between; font-weight:600; margin-bottom:6px}
+.sc output{font-family:var(--serif); font-weight:800; color:var(--lav); font-size:22px}
+.scale-tiles{display:grid; grid-template-columns:repeat(4,1fr); gap:16px}
+.scale-tiles .card{padding:24px 22px}
+.scale-tiles .big{font-size:38px}
+.scale-tiles p{font-size:14px; margin-top:10px; color:var(--silver-dim); line-height:1.45}
+.ladder{margin-top:26px}
+.ladder .step-row{display:flex; align-items:baseline; gap:18px; padding:18px 4px; border-top:1px solid var(--line)}
+.ladder .step-row:first-child{border-top:0}
+.ladder .amt{font-family:var(--serif); font-weight:800; font-size:clamp(24px,3.4vw,36px); min-width:min(210px,38%); color:var(--silver)}
+.ladder .desc{color:var(--silver-dim); font-size:16px}
+.ladder .step-row.hi .amt{color:var(--lav)}
+.foot-note{margin-top:18px; color:var(--silver-dim); font-size:14.5px}
+
+/* Tabs */
+.tabs{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px}
+.panel[hidden]{display:none}
+.panel-intro{max-width:760px; color:var(--silver-dim); margin-bottom:24px; font-size:17.5px}
+
+/* Business model */
+.bmc-tools{display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:22px}
+.bmc{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:start}
+.blk{padding:0; overflow:hidden}
+.blk-in{padding:24px 24px 18px}
+.blk .n{
+  display:inline-grid; place-items:center; width:34px; height:34px; border-radius:50%; margin-bottom:14px;
+  font-family:var(--serif); font-weight:800; background:var(--silver); color:var(--ink-on-silver);
+}
+.blk h3{font-size:21px; margin-bottom:6px}
+.blk details{border-top:1px solid var(--line); background:rgba(8,23,15,.45)}
+.blk summary{cursor:pointer; padding:14px 24px; color:var(--lav); font-weight:600; font-size:14.5px; list-style:none}
+.blk summary::-webkit-details-marker{display:none}
+.blk summary::after{content:"+"; float:right; font-size:20px; line-height:1}
+.blk details[open] summary::after{content:"\2212"}
+.blk .detail{padding:0 24px 20px}
+.blk .detail p{font-size:14.5px; margin-top:8px; color:var(--silver)}
+
+/* Table */
+.tbl-wrap{overflow-x:auto; border:1px solid var(--line-strong); border-radius:20px}
+table{border-collapse:collapse; width:100%; min-width:680px}
+th,td{padding:18px 22px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line); font-size:16px}
+tr:last-child td{border-bottom:0}
+th{font-family:var(--serif); font-size:18px; background:rgba(8,23,15,.7); color:var(--silver)}
+th.us{background:var(--violet); color:var(--ink-on-silver)}
+td:first-child{font-weight:600; color:var(--silver); width:24%}
+td.them{color:var(--silver-dim)}
+td.us{background:rgba(47,191,122,.12); color:var(--silver)}
+
+/* Tech */
+.arch{
+  display:flex; flex-wrap:wrap; gap:14px; align-items:center; padding:22px 26px; margin-bottom:22px;
+  border-radius:20px; border:1px solid var(--line-strong); background:rgba(47,191,122,.1);
+}
+.arch strong{color:var(--lav)}
+
+/* Roadmap */
+.road{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; position:relative}
+.phase{position:relative}
+.phase .ph{display:flex; align-items:center; gap:14px; margin-bottom:16px}
+.phase .num{
+  width:52px; height:52px; border-radius:50%; display:grid; place-items:center; font-family:var(--serif);
+  font-weight:800; font-size:22px; background:var(--violet); color:var(--ink-on-silver); box-shadow:0 0 0 6px rgba(47,191,122,.2);
+}
+.phase .ph h3{font-size:26px; margin:0}
+.phase .ph span{color:var(--lav); font-weight:600; font-size:15px}
+
+/* Closing */
+.closing{text-align:center; padding:120px 0 96px;
+  background:radial-gradient(800px 420px at 50% 0%, rgba(47,191,122,.28), transparent 65%), var(--bg)}
+.closing h2{font-size:clamp(46px,9vw,110px); font-weight:800; letter-spacing:-0.03em}
+.closing .sub{font-family:var(--serif); font-size:clamp(20px,3vw,30px); margin:22px auto 0; max-width:720px; color:var(--silver)}
+.closing .who{margin-top:30px; font-weight:700; color:var(--lav); font-size:16px}
+.closing .mail{display:inline-block; margin-top:16px; font-size:22px; font-weight:600; color:var(--silver)}
+.closing .open{margin-top:18px; color:var(--silver-dim)}
+
+@media (max-width:980px){
+  .g3,.g4,.bmc,.road,.scale-tiles,.roles-grid{grid-template-columns:repeat(2,1fr)}
+  .vision-top,.qi,.inc-top{grid-template-columns:1fr}
+  .gauge-card{position:static}
+  .stat-strip{grid-template-columns:repeat(2,1fr)}
+  .stat-strip > div:nth-child(2){border-right:0}
+  .stat-strip > div:nth-child(-n+2){border-bottom:1px solid var(--line)}
+}
+@media (max-width:680px){
+  body{font-size:16px}
+  .sec{padding:72px 0}
+  .g2,.g3,.g4,.bmc,.road,.scale-tiles,.roles-grid,.fees,.sum,.tiers,.scale-controls,.vision-nums{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr; gap:22px}
+  .flow::before,.flow::after{display:none}
+  .step{display:grid; grid-template-columns:48px 1fr; gap:0 16px; text-align:left; align-items:start}
+  .step .dot{margin:0; grid-row:1 / span 2}
+  .hero{padding-top:56px}
+  .dots{grid-template-columns:repeat(10,1fr)}
+  .ladder .step-row{flex-direction:column; gap:4px}
+  .brand{font-size:18px}
+  .nav-in{gap:12px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition:none !important}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">Fasal Flow</a>
+    <nav class="links" id="links" aria-label="Sections">
+      <a href="#vision">Vision</a>
+      <a href="#team">Team</a>
+      <a href="#quality">Quality engine</a>
+      <a href="#network">FSP network</a>
+      <a href="#economics">Economics</a>
+      <a href="#scale">Scale math</a>
+      <a href="#gtm">Go-to-market</a>
+      <a href="#model">Business model</a>
+      <a href="#enam">vs e-NAM</a>
+      <a href="#tech">Technology</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" data-nav="">
+  <div class="wrap">
+    <p class="kicker">Next-gen B2B AgTech ecosystem</p>
+    <h1 class="silver-text">Fasal Flow</h1>
+    <p class="tagline">Digitizing the Farm-to-Business Agricultural Supply Chain</p>
+    <div class="hero-meta">
+      <span><strong>Team Barbie</strong></span>
+      <span>Hriman Das Gupta and Yuvraj Soni</span>
+      <a href="mailto:fasalflowofficial@gmail.com">fasalflowofficial@gmail.com</a>
+    </div>
+    <div class="cta-row">
+      <a class="btn primary" href="#quality">Try the quality index</a>
+      <a class="btn" href="#economics">Compare mandi vs FasalFlow</a>
+      <a class="btn" href="#scale">Run the scale math</a>
+    </div>
+
+    <div class="flow-wrap">
+      <h2 class="flow-title">One lot, farmgate to buyer</h2>
+      <div class="flow" id="flow">
+        <div class="step"><div class="dot">1</div><h3>Farmgate collection</h3><p>An FSP lists and aggregates crop within a 15 km radius.</p></div>
+        <div class="step"><div class="dot">2</div><h3>AI + NIR grading</h3><p>Four-parameter Quality Index scored at the source.</p></div>
+        <div class="step"><div class="dot">3</div><h3>Certified batch</h3><p>Grade A, B or C certificate bound to the purchase order.</p></div>
+        <div class="step"><div class="dot">4</div><h3>Escrow lock</h3><p>Buyer funds locked before dispatch, T+0 payout at pickup.</p></div>
+        <div class="step"><div class="dot">5</div><h3>Buyer delivery</h3><p>Full Truckload dispatched direct, no mandi layers.</p></div>
+      </div>
+    </div>
+
+    <div class="stat-strip">
+      <div><div class="big">92%</div><p>of trade value reaches the farmer, against 79% in the mandi</p></div>
+      <div><div class="big">12-15%</div><p>direct cost reduction for wholesale B2B buyers</p></div>
+      <div><div class="big">24%</div><p>higher net farmgate realisation for producers</p></div>
+      <div><div class="big">6.0%</div><p>blended take rate, which is ₹1,200 revenue per metric ton</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section class="sec" id="vision" data-nav="vision">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Strategic vision and market positioning</h2>
+      <p>An asset-light, direct farmgate-to-buyer marketplace that replaces opaque physical mandis with verified digital trading.</p>
+    </div>
+    <div class="vision-top">
+      <div class="card">
+        <h3>Industry problem</h3>
+        <div class="vision-nums">
+          <div><div class="big">$300B+</div><span>agricultural trade in India</span></div>
+          <div><div class="big">22%</div><span>post-harvest wastage</span></div>
+          <div><div class="big">35%</div><span>cumulative middleman value leakage</span></div>
+        </div>
+        <p>India's $300B+ agricultural trade suffers from 22% post-harvest wastage and 35% cumulative middleman value leakage.</p>
+      </div>
+      <div class="card good">
+        <h3>Core solution</h3>
+        <p>FasalFlow operates as an asset-light, direct farmgate-to-buyer marketplace replacing opaque physical mandis with verified digital trading.</p>
+      </div>
+    </div>
+    <h3 style="margin:44px 0 16px; font-size:26px">Key value drivers</h3>
+    <div class="grid g3 drivers" style="margin-top:0">
+      <div class="driver"><div class="big">&lt; 10 min</div><p>Field-level AI + NIR quality check on every dispatched lot, scored at source</p></div>
+      <div class="driver"><div class="big">12-15%</div><p>Direct cost reduction for wholesale B2B buyers</p></div>
+      <div class="driver"><div class="big">24%</div><p>Higher net farmgate realisations for agricultural producers</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="sec alt" id="team" data-nav="team">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Team Barbie: strategic execution and role matrix</h2>
+      <p>Leadership framework: a 2-member core execution model. Two owners cover all five functional roles end to end.</p>
+    </div>
+    <div class="grid g2">
+      <div class="card"><div class="person"><div class="avatar">H</div><div><h3>Hriman Das Gupta</h3><p>Lead Strategist &amp; Operations</p></div></div></div>
+      <div class="card"><div class="person"><div class="avatar">Y</div><div><h3>Yuvraj Soni</h3><p>Lead Tech &amp; Financial Architecture</p></div></div></div>
+    </div>
+    <div class="roles">
+      <div class="roles-grid">
+        <div class="card"><h4>Product &amp; Innovation</h4><p>Problem definition, core product roadmap, and value proposition.</p></div>
+        <div class="card"><h4>Operations &amp; Strategy</h4><p>Supply chain design, FSP partner network, and multi-region expansion.</p></div>
+        <div class="card"><h4>Technology &amp; Development</h4><p>Platform architecture, computer-vision AI stack, and API integrations.</p></div>
+        <div class="card"><h4>Marketing &amp; Growth</h4><p>B2B buyer acquisition, branding, and farmer outreach.</p></div>
+        <div class="card"><h4>Finance &amp; Business Model</h4><p>Commission structure, unit economics, and capital allocation.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET IMPERATIVE -->
+<section class="sec" id="market" data-nav="vision">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Refactoring the supply chain</h2>
+      <p>Five to seven intermediary layers and 22% spoilage, replaced by direct farmgate pickup and escrow-backed contracts.</p>
+    </div>
+    <div class="grid g2">
+      <div class="card bad">
+        <h3>Legacy supply chain losses</h3>
+        <div class="chain" aria-label="Farmer to buyer through 5 to 7 intermediaries">
+          <span class="node">Farmer</span><span class="arrow">&rarr;</span>
+          <span class="node mid">1</span><span class="node mid">2</span><span class="node mid">3</span><span class="node mid">4</span><span class="node mid">5</span><span class="node mid faint">6</span><span class="node mid faint">7</span>
+          <span class="arrow">&rarr;</span><span class="node buyer">Buyer</span>
+        </div>
+        <ul class="pts">
+          <li>Multi-layer traditional commission agents (Arhtiyas) charge compounding interest fees and hidden commissions.</li>
+          <li>Produce passes through 5 to 7 intermediaries, adding transit time and increasing spoilage rates by 22%.</li>
+        </ul>
+        <p class="chip-line">22% spoilage across 5-7 layers</p>
+      </div>
+      <div class="card good">
+        <h3>The FasalFlow paradigm</h3>
+        <div class="chain" aria-label="Farmer to buyer through an FSP directly">
+          <span class="node">Farmer</span><span class="arrow">&rarr;</span>
+          <span class="node fsp">FSP + NIR grading</span><span class="arrow">&rarr;</span>
+          <span class="node buyer">Buyer</span>
+        </div>
+        <ul class="pts">
+          <li>Bypasses predatory mandi layers through direct farmgate pickup and optimized Full Truckload (FTL) logistics.</li>
+          <li>Replaces price speculation with transparent real-time bidding and escrow-backed contracts.</li>
+        </ul>
+        <p class="chip-line">Direct pickup with escrow contracts</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITY -->
+<section class="sec alt" id="quality" data-nav="quality">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Proprietary quality verification formula and grading engine</h2>
+      <p>Replaces subjective middleman inspection with an objective, scientific quality scoring model executed directly at the farm node. Move the sliders to score a lot yourself.</p>
+    </div>
+
+    <div class="formula" aria-label="Quality Index formula">QI = (0.25 × Ac) + (0.35 × Mr) + (0.25 × Df) + (0.15 × Ht)</div>
+    <div class="formula-live" id="qiLive" aria-live="polite"></div>
+
+    <div class="presets" role="tablist" aria-label="Sample lots">
+      <span>Sample lots:</span>
+      <button class="pill" data-p="92,90,94,88">Premium lot</button>
+      <button class="pill" data-p="78,76,80,72">Standard lot</button>
+      <button class="pill" data-p="60,58,64,50">Low-grade lot</button>
+    </div>
+
+    <div class="qi">
+      <div class="card">
+        <div class="param">
+          <div class="param-top"><strong>Ac: Appearance &amp; Size Uniformity</strong><output id="o-ac">88</output></div>
+          <p>Evaluated via Mobile Camera Computer-Vision AI (Score 0-100).</p>
+          <input type="range" min="0" max="100" value="88" id="ac" aria-label="Ac score">
+          <span class="w">Weight 0.25</span>
+        </div>
+        <div class="param">
+          <div class="param-top"><strong>Mr: Maturity &amp; BRIX / Moisture Level</strong><output id="o-mr">84</output></div>
+          <p>Measured via Handheld Near-Infrared (NIR) Spectrometer (Score 0-100).</p>
+          <input type="range" min="0" max="100" value="84" id="mr" aria-label="Mr score">
+          <span class="w">Weight 0.35, the heaviest parameter</span>
+        </div>
+        <div class="param">
+          <div class="param-top"><strong>Df: Defect &amp; Surface Damage Index</strong><output id="o-df">90</output></div>
+          <p>Inverted AI surface defect percentage calculation (Score 0-100).</p>
+          <input type="range" min="0" max="100" value="90" id="df" aria-label="Df score">
+          <span class="w">Weight 0.25</span>
+        </div>
+        <div class="param">
+          <div class="param-top"><strong>Ht: Harvesting Delta Timeliness</strong><output id="o-ht">80</output></div>
+          <p>Days measured relative to optimal physiological maturity window (Score 0-100).</p>
+          <input type="range" min="0" max="100" value="80" id="ht" aria-label="Ht score">
+          <span class="w">Weight 0.15</span>
+        </div>
+      </div>
+      <div class="card gauge-card">
+        <svg class="gauge" viewBox="0 0 220 130" id="gauge" role="img" aria-label="Quality Index gauge">
+          <path d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#1F4A34" stroke-width="16" stroke-linecap="round"/>
+          <path id="arc" d="M 20 110 A 90 90 0 0 1 200 110" fill="none" stroke="#9BE8B8" stroke-width="16" stroke-linecap="round" stroke-dasharray="282.74" stroke-dashoffset="282.74" style="transition:stroke-dashoffset .4s"/>
+          <g id="ticks"></g>
+        </svg>
+        <div class="gauge-num" id="qiNum">85.9</div>
+        <div class="gauge-grade" id="qiGrade">Grade A</div>
+        <div class="gauge-use" id="qiUse">Premium B2B Export &amp; High-End Retail</div>
+      </div>
+    </div>
+
+    <h3 style="margin:44px 0 0; font-size:26px">Automated crop tiering system</h3>
+    <div class="tiers">
+      <div class="tier" id="tA"><h4>Grade A</h4><div class="r">QI ≥ 85</div><p>Premium B2B Export &amp; High-End Retail</p></div>
+      <div class="tier" id="tB"><h4>Grade B</h4><div class="r">70 ≤ QI &lt; 85</div><p>Standard Processing &amp; Mass Retail</p></div>
+      <div class="tier" id="tC"><h4>Grade C</h4><div class="r">QI &lt; 70</div><p>Local Industrial Processing</p></div>
+    </div>
+    <div class="callout"><strong>Data integrity:</strong> All inspection reports are cryptographically bound to digital purchase orders.</div>
+  </div>
+</section>
+
+<!-- FSP NETWORK -->
+<section class="sec" id="network" data-nav="network">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>From exploitation to operations</h2>
+      <p>Disintermediating legacy Arhtiyas and introducing Fasal Service Partners (FSPs).</p>
+    </div>
+    <div class="grid g2">
+      <div class="card bad">
+        <h3>Disintermediating legacy Arhtiyas</h3>
+        <p>Removing traditional commission agents charging 6% to 10% interest-bound fees and creating debt dependence.</p>
+        <p class="chip-line">6% - 10% extraction removed</p>
+      </div>
+      <div class="card good">
+        <h3>Introducing Fasal Service Partners (FSPs)</h3>
+        <p>Converting local village entrepreneurs and FPO leads into micro-fulfillment managers.</p>
+        <p class="chip-line" style="color:var(--lav)">Rural micro-entrepreneurship</p>
+      </div>
+    </div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="card">
+        <h3>FSP operational role</h3>
+        <ul class="pts">
+          <li>Localized crop collection and farmgate aggregation.</li>
+          <li>Handheld NIR quality testing and initial grading.</li>
+          <li>Aggregating Full Truckload (FTL) dispatches.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Transparent service fee model</h3>
+        <ul class="pts">
+          <li>FSPs earn a fixed 1.5% to 2.0% volume-based fulfillment fee.</li>
+          <li>Turns variable middleman markups into sustainable, reliable rural employment.</li>
+        </ul>
+        <div class="range-viz">
+          <div class="range-row">
+            <label><span>Legacy Arhtiya extraction</span><b>6% - 10%</b></label>
+            <div class="track"><i style="left:60%; width:40%; background:var(--rose)"></i></div>
+          </div>
+          <div class="range-row">
+            <label><span>FSP fulfillment fee</span><b>1.5% - 2.0%</b></label>
+            <div class="track"><i style="left:15%; width:5%; background:var(--lav)"></i></div>
+            <div class="scale"><span>0%</span><span>5%</span><span>10%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="callout"><strong>The swap:</strong> a fixed 1.5% - 2.0% fulfillment fee replaces 6% - 10% interest-bound commission extraction.</div>
+  </div>
+</section>
+
+<!-- INCLUSION -->
+<section class="sec alt" id="inclusion" data-nav="network">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Inclusive onboarding: zero smartphones required</h2>
+    </div>
+    <div class="inc-top">
+      <div class="card">
+        <div class="big">45%+</div>
+        <div class="dots" id="dots" aria-hidden="true"></div>
+        <p>Inclusion challenge: over 45% of smallholder farmers in targeted agricultural belts do not own smartphones or have stable internet.</p>
+      </div>
+      <div class="card good" style="display:flex; align-items:center">
+        <p style="font-family:var(--serif); font-size:clamp(20px,2.6vw,28px); color:var(--silver); line-height:1.3">Equitable market access: ensures 100% farmer coverage regardless of internet connectivity or device ownership.</p>
+      </div>
+    </div>
+    <div class="grid g3">
+      <div class="card"><h3>Voice-first IVR engine</h3><ul class="pts"><li>Farmers without smartphones interact via Toll-Free Voice Calls.</li><li>Powered by Bhashini Multilingual AI supporting 12+ regional dialects.</li></ul></div>
+      <div class="card"><h3>Feature phone SMS / WhatsApp audio</h3><p>Automated price alerts and voice-note deal confirmations sent via WhatsApp Business and localized SMS gateways.</p></div>
+      <div class="card"><h3>Assisted village kiosks</h3><p>FSPs operate digital tablet kiosks at local Panchayats to assist non-tech-literate farmers with listing and trade execution.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BUYERS -->
+<section class="sec" id="buyers" data-nav="network">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>B2B buyer acquisition and branding strategy</h2>
+    </div>
+    <div class="grid g2">
+      <div class="card">
+        <h3>Targeted buyer segments</h3>
+        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:6px">
+          <span class="tag" style="margin:0">Bulk food processors</span>
+          <span class="tag" style="margin:0">HORECA networks</span>
+          <span class="tag" style="margin:0">Large retail chains</span>
+          <span class="tag" style="margin:0">Commercial exporters</span>
+        </div>
+      </div>
+      <div class="card good">
+        <h3>Brand positioning</h3>
+        <p style="font-family:var(--serif); font-size:30px; color:var(--silver); margin:6px 0 10px">“The Precision Bridge”</p>
+        <p>Positioned on absolute quality reliability, zero bad-batch risk, and guaranteed delivery SLAs.</p>
+      </div>
+      <div class="card">
+        <h3>Value proposition for buyers</h3>
+        <ul class="pts">
+          <li>Escrow-backed forward procurement contracts.</li>
+          <li>Pre-certified digital NIR quality certificates attached to every batch.</li>
+          <li>12% lower average procurement costs compared to physical mandi purchasing.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Go-to-market (GTM) strategy</h3>
+        <ul class="pts">
+          <li>Direct B2B API integration with enterprise ERPs and dedicated institutional buyer web portals.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESILIENCE -->
+<section class="sec alt" id="resilience" data-nav="network">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Non-produce support and off-season monetization</h2>
+      <p>Supporting farmers between harvests: mitigating crop failure impact and seasonal income gaps for landless and smallholder farmers.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card"><h3>Micro-yield advance financing</h3><p>Pre-harvest credit access based on satellite crop health data (NDVI) and soil moisture metrics.</p></div>
+      <div class="card"><h3>Group input aggregation</h3><p>Discounted bulk purchasing of high-quality seeds, bio-fertilizers, and crop protection via FPO pooling.</p></div>
+      <div class="card"><h3>Service-based rural income</h3><ul class="pts"><li>Training landless farmers as certified FasalFlow Quality Assessors and Collection Hub Handlers.</li><li>Aggregation referral commissions for coordinating local neighborhood crop pooling nodes.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ECONOMICS -->
+<section class="sec" id="economics" data-nav="economics">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Traditional mandi vs. FasalFlow, per metric ton</h2>
+      <p>Cost comparison per metric ton. The deck's base crop value is ₹20,000; drag the slider to see the same percentages on any value.</p>
+    </div>
+    <div class="eco-controls">
+      <label for="cv">Base crop value per metric ton</label>
+      <input type="range" id="cv" min="10000" max="60000" step="1000" value="20000">
+      <output id="cvOut" for="cv">₹20,000</output>
+    </div>
+    <div class="grid g2">
+      <div class="card ledger bad">
+        <h3>Traditional APMC mandi model</h3>
+        <div class="sub">Farmer keeps 79% of trade value</div>
+        <div class="row"><span>Arhtiya Commission (8-10%)</span><b id="m1">₹1,800</b></div>
+        <div class="row"><span>Unofficial Deductions &amp; Loading (4%)</span><b id="m2">₹800</b></div>
+        <div class="row"><span>Transit Wastage &amp; Spoilage (8%)</span><b id="m3">₹1,600</b></div>
+        <div class="stack" aria-hidden="true"><i id="mbar" style="width:79%; background:var(--silver)"></i><i style="width:9%; background:#f29ab8"></i><i style="width:4%; background:#d97a9c"></i><i style="width:8%; background:#b45d80"></i></div>
+        <div class="net"><div class="big" id="mnet">₹15,800</div><p>Net realized by farmer, 79% of trade value</p></div>
+      </div>
+      <div class="card ledger good">
+        <h3>FasalFlow direct model</h3>
+        <div class="sub">Farmer keeps 92% of trade value</div>
+        <div class="row"><span>Platform Service Fee (3%)</span><b id="f1">₹600</b></div>
+        <div class="row"><span>FSP Fulfillment Fee (2%)</span><b id="f2">₹400</b></div>
+        <div class="row"><span>Direct Route Logistics (3%)</span><b id="f3">₹600</b></div>
+        <div class="stack" aria-hidden="true"><i id="fbar" style="width:92%; background:var(--silver)"></i><i style="width:3%; background:#2FBF7A"></i><i style="width:2%; background:#9BE8B8"></i><i style="width:3%; background:#1f8f5a"></i></div>
+        <div class="net"><div class="big" id="fnet">₹18,400</div><p>Net realized by farmer, 92% of trade value</p></div>
+        <span class="gain">+16.4% gain for the farmer</span>
+      </div>
+    </div>
+    <div class="callout"><strong>Buyer cost saving:</strong> bulk buyers save 5% to 8% directly compared to mandi procurement costs. Extra value returned to the farmer: <b id="extra">₹2,600</b> per metric ton.</div>
+  </div>
+</section>
+
+<!-- UNIT ECONOMICS -->
+<section class="sec alt" id="unit" data-nav="economics">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Financial model, unit economics and margins</h2>
+      <p>Sustainable revenue streams: three fee lines that add up to the platform take rate.</p>
+    </div>
+    <div class="fees">
+      <div class="card fee"><div class="big">3.0%</div><h3>B2B transaction fee</h3><p>Commission on settled trade value (charged to buyer).</p></div>
+      <div class="card fee"><div class="big">2.0%</div><h3>Logistics arbitrage fee</h3><p>Fee on optimized Full Truckload (FTL) route planning.</p></div>
+      <div class="card fee"><div class="big">1.0%</div><h3>Instant settlement fee</h3><p>Optional fee for T+0 instant payout financing.</p></div>
+    </div>
+    <div class="bar6" aria-hidden="true"><i style="width:50%; background:#2FBF7A"></i><i style="width:33.3%; background:#9BE8B8"></i><i style="width:16.7%; background:#E8F1EB"></i></div>
+    <div class="sum">
+      <div class="card"><div class="big">6.0%</div><p>Combined platform take rate = ₹1,200 revenue per metric ton</p></div>
+      <div class="card"><div class="big">~62%</div><p>Estimated operating margin = ₹744 contribution per metric ton</p></div>
+    </div>
+    <div class="callout"><strong>Financial health:</strong> low capital burn with immediate transaction-level positive cash flow.</div>
+  </div>
+</section>
+
+<!-- SCALE MATH -->
+<section class="sec" id="scale" data-nav="scale">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Revenue build-up at regional density</h2>
+      <p>Illustrative build-up on the stated 6.0% take rate, ₹20,000/MT base crop value and the Phase 1 target of 50 FSPs. Change the two inputs to stress-test it.</p>
+    </div>
+    <div class="scale-controls">
+      <div class="sc"><label for="fsps">Fasal Service Partners <output id="fspsOut">50</output></label><input type="range" id="fsps" min="10" max="500" step="5" value="50"></div>
+      <div class="sc"><label for="mtper">Metric tons per FSP per month <output id="mtperOut">40</output></label><input type="range" id="mtper" min="10" max="100" step="5" value="40"></div>
+    </div>
+    <div class="scale-tiles">
+      <div class="card"><div class="big">₹1,200</div><p>Platform revenue per metric ton (6.0% of ₹20,000)</p></div>
+      <div class="card"><div class="big">₹2,600</div><p>Extra value returned to the farmer per MT (18,400 vs 15,800)</p></div>
+      <div class="card"><div class="big" id="sMT">2,000 MT</div><p id="sMTd">Monthly throughput at 50 FSPs x 40 MT each</p></div>
+      <div class="card"><div class="big" id="sGMVt">₹4.0 Cr</div><p>Monthly GMV routed through the platform</p></div>
+    </div>
+    <h3 style="margin:44px 0 0; font-size:26px">Monthly build-up at Phase 1 density</h3>
+    <div class="ladder">
+      <div class="step-row"><div class="amt" id="lGMV">₹4.00 Cr</div><div class="desc" id="lGMVd">Gross merchandise value (2,000 MT x ₹20,000)</div></div>
+      <div class="step-row"><div class="amt" id="lRev">₹24.00 Lakhs</div><div class="desc">Platform revenue at 6.0% blended take rate</div></div>
+      <div class="step-row"><div class="amt" id="lCon">₹14.88 Lakhs</div><div class="desc">Operating contribution at ~62% margin</div></div>
+      <div class="step-row hi"><div class="amt" id="lAnn">₹2.88 Cr</div><div class="desc">Annualised revenue run-rate</div></div>
+      <div class="step-row hi"><div class="amt" id="lFar">₹52.00 Lakhs</div><div class="desc" id="lFard">Additional farmer income unlocked (2,000 MT x ₹2,600)</div></div>
+    </div>
+    <p class="foot-note">Every figure above is derived from the per-tonne economics on the previous sections; actuals vary with crop mix and season.</p>
+  </div>
+</section>
+
+<!-- GTM -->
+<section class="sec alt" id="gtm" data-nav="gtm">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Marketing and go-to-market</h2>
+      <p>Four parts of the acquisition matrix, from paid buyer demand to grassroots farmer supply.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Marketing channels" data-tabs="gtm">
+      <button class="pill" role="tab" aria-selected="true" data-t="g1">Paid digital &amp; performance</button>
+      <button class="pill" role="tab" aria-selected="false" data-t="g2">Organic &amp; content-led</button>
+      <button class="pill" role="tab" aria-selected="false" data-t="g3">Grassroots farmer outreach</button>
+      <button class="pill" role="tab" aria-selected="false" data-t="g4">Technical integration</button>
+    </div>
+
+    <div class="panel" id="g1" role="tabpanel">
+      <p class="panel-intro">To capture high-value wholesale buyers, food processors, retail chains, and institutional exporters, we deploy targeted digital ad networks across three channels.</p>
+      <div class="grid g3">
+        <div class="card"><h3>Meta Ads (Facebook &amp; Instagram)</h3><ul class="pts"><li>Highly targeted lead-generation campaigns aimed at B2B agro-commodity traders, cold-storage owners, and mid-sized food processing unit heads.</li><li>Creatives highlight guaranteed batch quality, zero middleman markups, and escrow safety.</li></ul></div>
+        <div class="card"><h3>Google Search (PPC) &amp; Trade Network Ads</h3><ul class="pts"><li>Keyword-targeted ads focus on bulk procurement terms like “bulk agricultural produce sourcing” and “verified farmgate grain procurement.”</li><li>Captures commercial buyers actively searching for reliable, direct supply chains.</li></ul></div>
+        <div class="card"><h3>LinkedIn B2B Campaigns</h3><ul class="pts"><li>Targets procurement directors and supply chain heads at major retail chains and institutional buyers.</li><li>Emphasizes transparent digital escrow settlements and SLA-backed fulfillment.</li></ul></div>
+      </div>
+    </div>
+
+    <div class="panel" id="g2" role="tabpanel" hidden>
+      <div class="grid g2">
+        <div class="card"><h3>SEO &amp; industry thought leadership</h3><ul class="pts"><li>Publishing case studies, price-trend analyses, and transparent margin comparisons.</li><li>Positions FasalFlow as “India’s Most Reliable B2B Direct-Agri Supply Network.”</li></ul></div>
+        <div class="card"><span class="tag">Always-on buyer updates</span><h3>WhatsApp Business broadcasting</h3><p>Automated notification loops for B2B buyers on daily crop harvests, quality grades, and regional availability.</p></div>
+      </div>
+    </div>
+
+    <div class="panel" id="g3" role="tabpanel" hidden>
+      <p class="panel-intro">Since a significant portion of smallholder farmers lack smartphones or active digital habits, we use a physical-digital hybrid outreach model on the supply side.</p>
+      <div class="grid g3">
+        <div class="card"><h3>Village-level entrepreneurs &amp; FSPs</h3><ul class="pts"><li>Local micro-entrepreneurs (Fasal Service Partners) equipped with tablet devices.</li><li>Handle digitized crop listings directly at the farmgate.</li></ul></div>
+        <div class="card"><h3>Voice AI &amp; IVR campaigns</h3><ul class="pts"><li>Bhashini-powered toll-free IVR systems for farmers to check prices, receive alerts, and book pickups.</li><li>Accessible via basic GSM voice calls, requiring no smartphone or internet connection.</li></ul></div>
+        <div class="card"><h3>FPO aggregation hubs &amp; ground activations</h3><ul class="pts"><li>Partners directly with established Farmer Producer Organizations.</li><li>Uses their physical collection centers as grassroots onboarding kiosks.</li></ul></div>
+      </div>
+      <div class="callout"><strong>Physical-digital hybrid:</strong> reaches every farmer regardless of smartphone ownership or internet connectivity.</div>
+    </div>
+
+    <div class="panel" id="g4" role="tabpanel" hidden>
+      <p class="panel-intro">To make our marketing and targeting functional, FasalFlow integrates the following core API models and platforms.</p>
+      <div class="grid g4">
+        <div class="card"><h3>Google Maps Platform</h3><p>Distance Matrix &amp; Directions API calculates real-time road distances from farm collection points to urban buyer hubs for optimal routing.</p></div>
+        <div class="card"><h3>Google Places API</h3><p>Automatically fetches nearby wholesale buyers, processing plants, cold storages, and physical mandis.</p></div>
+        <div class="card"><h3>Agmarknet &amp; UPAg APIs</h3><p>Pulls real-time daily crop prices and historical trends for transparent benchmark pricing for both farmers and buyers.</p></div>
+        <div class="card"><h3>WhatsApp Business API &amp; Bhashini</h3><p>Powers localized multilingual communication and voice-driven accessibility.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUSINESS MODEL -->
+<section class="sec" id="model" data-nav="model">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>FasalFlow business model</h2>
+      <p>All nine blocks in order, from 1 to 9. Open “Full detail” on any block for the complete wording.</p>
+    </div>
+    <div class="bmc-tools">
+      <span class="muted">Blocks 1 to 4: who and how. Blocks 5 to 9: money and machinery.</span>
+      <button class="pill" id="bmcAll">Expand all details</button>
+    </div>
+    <div class="bmc" id="bmc"></div>
+  </div>
+</section>
+
+<!-- E-NAM -->
+<section class="sec alt" id="enam" data-nav="enam">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Beating e-NAM, one structural gap at a time</h2>
+      <p>What the benchmark does well, where it breaks, and how FasalFlow answers.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="e-NAM comparison" data-tabs="enam">
+      <button class="pill" role="tab" aria-selected="true" data-t="e1">Benchmark strengths</button>
+      <button class="pill" role="tab" aria-selected="false" data-t="e2">Critical flaws</button>
+      <button class="pill" role="tab" aria-selected="false" data-t="e3">Our answer</button>
+      <button class="pill" role="tab" aria-selected="false" data-t="e4">Head to head</button>
+    </div>
+
+    <div class="panel" id="e1" role="tabpanel">
+      <p class="panel-intro">Market benchmark: e-NAM operates as a digital public overlay across physical APMC mandis.</p>
+      <div class="grid g2">
+        <div class="card"><h3>Unified price transparency</h3><p>Aggregates real-time price data across 1,300+ APMC mandis for 200+ commodities.</p></div>
+        <div class="card"><h3>Direct financial settlement</h3><p>Routes payments directly into farmer bank accounts via UPI/NEFT.</p></div>
+        <div class="card"><h3>Single-point levy framework</h3><p>Standardizes market fees on first wholesale purchase.</p></div>
+        <div class="card"><h3>Platform of Platforms (PoP)</h3><p>Integrates 3PL logistics and electronic warehouse receipts (e-NWRs).</p></div>
+      </div>
+    </div>
+
+    <div class="panel" id="e2" role="tabpanel" hidden>
+      <div class="grid g2">
+        <div class="card bad"><h3>Assaying bottleneck</h3><p>Mandi labs lack rapid quality-testing hardware; remote buyers refuse unseen bids.</p></div>
+        <div class="card bad"><h3>Persistent cartelization</h3><p>Local trader cartels collude on online bids; farmers bound to commission agents (arhtiyas) via informal loans are forced to sell offline.</p></div>
+        <div class="card bad"><h3>Regulatory fragmentation</h3><p>Agriculture remains a state subject, causing state-level delays and diluted APMC amendments.</p></div>
+        <div class="card bad"><h3>Physical &amp; digital infrastructure lag</h3><p>Operations stall at mandi gates due to server overloads, rural connectivity drops, and lack of cold-chain integration.</p></div>
+      </div>
+    </div>
+
+    <div class="panel" id="e3" role="tabpanel" hidden>
+      <div class="grid g3">
+        <div class="card good"><h3>AI quality verification</h3><p>Mobile camera AI measures size, color, and surface defects; handheld NIR scanners measure moisture and sugar levels directly bound to purchase orders.</p></div>
+        <div class="card good"><h3>Immediate farmgate payouts (T+0)</h3><p>Delivers instant cash payments upon pickup via fintech/NBFC partners, eliminating arhtiya debt dependence.</p></div>
+        <div class="card good"><h3>Escrow price protection</h3><p>Locks 100% of buyer funds in escrow prior to dispatch and guarantees prices via forward contracts.</p></div>
+        <div class="card good"><h3>Group supply pooling</h3><p>Aggregates smallholder crops within a 15 km radius at FPO collection nodes into Full Truckload (FTL) quantities.</p></div>
+        <div class="card good" style="grid-column:span 2"><h3>Smart transport routing &amp; compliance</h3><p>Uses APIs and active arbitrage engines to route crops to high-demand markets while automatically generating inter-state e-way bills.</p></div>
+      </div>
+    </div>
+
+    <div class="panel" id="e4" role="tabpanel" hidden>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Challenge</th><th>e-NAM</th><th class="us">FasalFlow</th></tr></thead>
+          <tbody>
+            <tr><td>Quality Trust Deficit</td><td class="them">Relies on slow manual lab testing.</td><td class="us">Mobile AI &amp; NIR testing bound digitally to purchase orders.</td></tr>
+            <tr><td>Informal Debt Traps</td><td class="them">Leaves farmers dependent on Arhtiya loans.</td><td class="us">T+0 supply chain financing at farmgate pickup.</td></tr>
+            <tr><td>Local Cartelization</td><td class="them">Mandis suffer from physical trader collusion.</td><td class="us">Escrow-backed forward contracts and nationwide B2B matching.</td></tr>
+            <tr><td>Infrastructure Bottlenecks</td><td class="them">Experiences mandi gate congestion.</td><td class="us">Direct farmgate pickup via FPO collection hubs.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout"><strong>Every e-NAM constraint</strong> is answered by a structural design decision, not a patch.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH -->
+<section class="sec" id="tech" data-nav="tech">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Platform technology stack and API architecture</h2>
+    </div>
+    <div class="arch"><span><strong>System architecture:</strong> microservices-based cloud platform with offline-first mobile sync capabilities.</span></div>
+    <h3 style="margin:0 0 16px; font-size:26px">Essential API integrations</h3>
+    <div class="grid g4">
+      <div class="card"><h3>Google Maps API</h3><p>Hyper-local routing, farmgate geofencing, and proximity search.</p></div>
+      <div class="card"><h3>AgriStack &amp; DigiLocker API</h3><p>Direct farmer e-KYC and land ownership record verification.</p></div>
+      <div class="card"><h3>Agmarknet Data API</h3><p>Real-time government mandi price benchmarking.</p></div>
+      <div class="card"><h3>Multilingual Voice AI (Bhashini)</h3><p>Natural voice-command interface for regional language access.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="sec alt" id="roadmap" data-nav="roadmap">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Execution roadmap and scaling milestones</h2>
+      <p>A 12-month path from regional pilot to pan-India scaling and cross-border trade.</p>
+    </div>
+    <div class="road">
+      <div class="card phase">
+        <div class="ph"><div class="num">1</div><div><h3>Phase 1</h3><span>Months 1 - 3</span></div></div>
+        <ul class="pts"><li>Pilot deployment in high-density regional agricultural belts.</li><li>Onboarding 50 FSPs.</li><li>Stress-testing the AI quality grading engine.</li></ul>
+      </div>
+      <div class="card phase">
+        <div class="ph"><div class="num">2</div><div><h3>Phase 2</h3><span>Months 4 - 6</span></div></div>
+        <ul class="pts"><li>Onboarding 50+ corporate B2B buyers.</li><li>Integrating T+0 fintech payout APIs.</li><li>Expanding FPO collection hubs.</li></ul>
+      </div>
+      <div class="card phase">
+        <div class="ph"><div class="num">3</div><div><h3>Phase 3</h3><span>Months 7 - 12</span></div></div>
+        <ul class="pts"><li>Pan-India regional scaling.</li><li>Active arbitrage logistics routing.</li><li>Cross-border trade execution.</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- CLOSING -->
+<section class="closing" id="contact" data-nav="contact">
+  <div class="wrap">
+    <h2 class="silver-text">Thank You!</h2>
+    <p class="sub">Building the Future of Transparent Agri-Commerce Together</p>
+    <p class="who">FASALFLOW | TEAM BARBIE</p>
+    <a class="mail" href="mailto:fasalflowofficial@gmail.com">fasalflowofficial@gmail.com</a>
+    <p class="open">Open for Questions, Demonstration, and Collaborative Review.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function(s, c){ return (c||document).querySelector(s); };
+  var $$ = function(s, c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
+  var inr = function(n){ return '₹' + Math.round(n).toLocaleString('en-IN'); };
+  var money = function(n){
+    if (n >= 1e7) return '₹' + (n/1e7).toFixed(2) + ' Cr';
+    if (n >= 1e5) return '₹' + (n/1e5).toFixed(2) + ' Lakhs';
+    return inr(n);
+  };
+
+  /* Nav active + progress */
+  var links = $$('#links a');
+  var linkById = {};
+  links.forEach(function(a){ linkById[a.getAttribute('href').slice(1)] = a; });
+  var navSections = $$('section[data-nav]').filter(function(s){ return s.getAttribute('data-nav'); });
+  var scroller = $('#links');
+  function setActive(id){
+    links.forEach(function(a){ a.classList.remove('active'); a.removeAttribute('aria-current'); });
+    var a = linkById[id];
+    if (a){
+      a.classList.add('active'); a.setAttribute('aria-current','true');
+      var left = a.offsetLeft - scroller.clientWidth/2 + a.clientWidth/2;
+      scroller.scrollTo({left:left, behavior: reduce ? 'auto' : 'smooth'});
+    }
+  }
+  function onScroll(){
+    var h = document.documentElement;
+    var pct = h.scrollTop / (h.scrollHeight - h.clientHeight) * 100;
+    $('#progress').style.width = pct + '%';
+    var cur = null, y = window.innerHeight * 0.35;
+    navSections.forEach(function(s){
+      if (s.getBoundingClientRect().top <= y) cur = s.getAttribute('data-nav');
+    });
+    setActive(cur);
+  }
+  var last = null;
+  var origSet = setActive;
+  setActive = function(id){ if (id === last) return; last = id; origSet(id); };
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  /* Hero flow */
+  var steps = $$('#flow .step'), flow = $('#flow'), idx = 0;
+  function lit(i){
+    steps.forEach(function(s, k){ s.classList.toggle('on', k <= i); });
+    flow.style.setProperty('--p', i / (steps.length - 1));
+  }
+  if (reduce){ lit(steps.length - 1); }
+  else {
+    lit(0);
+    setInterval(function(){ idx = (idx + 1) % (steps.length + 1); lit(Math.min(idx, steps.length - 1)); if (idx === steps.length) { steps.forEach(function(s){ s.classList.remove('on'); }); flow.style.setProperty('--p', 0); } }, 1400);
+  }
+
+  /* Quality index */
+  var ids = ['ac','mr','df','ht'], W = {ac:.25, mr:.35, df:.25, ht:.15};
+  var arcLen = 282.74;
+  (function ticks(){
+    var g = $('#ticks'), out = '';
+    [70,85].forEach(function(v){
+      var a = Math.PI * v / 100;
+      var x1 = 110 - 80*Math.cos(a), y1 = 110 - 80*Math.sin(a);
+      var x2 = 110 - 100*Math.cos(a), y2 = 110 - 100*Math.sin(a);
+      out += '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="#E8F1EB" stroke-width="2"/>';
+    });
+    g.innerHTML = out;
+  })();
+  function qi(){
+    var v = {}, total = 0;
+    ids.forEach(function(k){ v[k] = +$('#'+k).value; $('#o-'+k).textContent = v[k]; total += W[k]*v[k]; });
+    $('#qiLive').textContent = '= (0.25 × ' + v.ac + ') + (0.35 × ' + v.mr + ') + (0.25 × ' + v.df + ') + (0.15 × ' + v.ht + ')  =  ' + total.toFixed(1);
+    $('#qiNum').textContent = total.toFixed(1);
+    $('#arc').style.strokeDashoffset = arcLen * (1 - total/100);
+    var g = total >= 85 ? 'A' : total >= 70 ? 'B' : 'C';
+    var use = {A:'Premium B2B Export & High-End Retail', B:'Standard Processing & Mass Retail', C:'Local Industrial Processing'}[g];
+    $('#qiGrade').textContent = 'Grade ' + g;
+    $('#qiUse').textContent = use;
+    ['A','B','C'].forEach(function(t){ $('#t'+t).classList.toggle('on', t === g); });
+  }
+  ids.forEach(function(k){ $('#'+k).addEventListener('input', function(){ $$('.presets .pill').forEach(function(p){ p.classList.remove('on'); }); qi(); }); });
+  $$('.presets .pill').forEach(function(b){
+    b.addEventListener('click', function(){
+      var vals = b.getAttribute('data-p').split(',');
+      ids.forEach(function(k, i){ $('#'+k).value = vals[i]; });
+      $$('.presets .pill').forEach(function(p){ p.classList.remove('on'); });
+      b.classList.add('on'); qi();
+    });
+  });
+  qi();
+
+  /* Inclusion dots */
+  (function(){
+    var d = $('#dots'), h = '';
+    for (var i = 0; i < 100; i++) h += '<i' + (i < 45 ? ' class="on"' : '') + '></i>';
+    d.innerHTML = h;
+  })();
+
+  /* Economics */
+  function eco(){
+    var v = +$('#cv').value;
+    $('#cvOut').textContent = inr(v);
+    $('#m1').textContent = inr(v*.09); $('#m2').textContent = inr(v*.04); $('#m3').textContent = inr(v*.08);
+    $('#f1').textContent = inr(v*.03); $('#f2').textContent = inr(v*.02); $('#f3').textContent = inr(v*.03);
+    $('#mnet').textContent = inr(v*.79); $('#fnet').textContent = inr(v*.92);
+    $('#extra').textContent = inr(v*.13);
+  }
+  $('#cv').addEventListener('input', eco); eco();
+
+  /* Scale math */
+  function scale(){
+    var f = +$('#fsps').value, m = +$('#mtper').value;
+    var mt = f * m, gmv = mt * 20000, rev = gmv * .06, con = rev * .62, ann = rev * 12, far = mt * 2600;
+    $('#fspsOut').textContent = f; $('#mtperOut').textContent = m;
+    $('#sMT').textContent = mt.toLocaleString('en-IN') + ' MT';
+    $('#sMTd').textContent = 'Monthly throughput at ' + f + ' FSPs x ' + m + ' MT each';
+    $('#sGMVt').textContent = money(gmv).replace('.00','.0');
+    $('#lGMV').textContent = money(gmv);
+    $('#lGMVd').textContent = 'Gross merchandise value (' + mt.toLocaleString('en-IN') + ' MT x ₹20,000)';
+    $('#lRev').textContent = money(rev);
+    $('#lCon').textContent = money(con);
+    $('#lAnn').textContent = money(ann);
+    $('#lFar').textContent = money(far);
+    $('#lFard').textContent = 'Additional farmer income unlocked (' + mt.toLocaleString('en-IN') + ' MT x ₹2,600)';
+  }
+  $('#fsps').addEventListener('input', scale); $('#mtper').addEventListener('input', scale); scale();
+
+  /* Tabs */
+  $$('[data-tabs]').forEach(function(group){
+    var btns = $$('button', group);
+    btns.forEach(function(b){
+      b.addEventListener('click', function(){
+        btns.forEach(function(x){
+          var on = x === b;
+          x.setAttribute('aria-selected', on);
+          var p = document.getElementById(x.getAttribute('data-t'));
+          if (p) p.hidden = !on;
+        });
+      });
+    });
+  });
+
+  /* Business model */
+  var BMC = [
+    {n:1,t:'Customer Segments',
+     s:['Bulk food processors, HORECA networks, large retail chains','Commercial exporters','Smallholder & landless farmers','FPOs and village entrepreneurs (FSPs)'],
+     d:['Demand side: bulk food processors, HORECA networks, large retail chains, commercial exporters.','Supply side: smallholder and landless farmers, FPOs and village entrepreneurs operating as FSPs.']},
+    {n:2,t:'Value Proposition',
+     s:['Buyers: 12% lower procurement cost, zero bad-batch risk','Farmers: 92% of trade value vs 79% in mandi (+16.4%)','24% higher net farmgate realisation','NIR certificate bound to every purchase order'],
+     d:['Buyers: 12% lower procurement cost, pre-certified NIR quality on every batch, escrow-backed forward contracts, guaranteed SLAs.','Farmers: 92% of trade value retained vs 79% in mandi, 24% higher realisation, T+0 payout at pickup.']},
+    {n:3,t:'Channels',
+     s:['B2B portal + direct ERP API integration','Toll-free voice-first IVR in 12+ dialects','WhatsApp Business audio and SMS alerts','FSP kiosks and FPO hubs within a 15 km radius'],
+     d:['B2B buyer web portal and direct ERP API integration.','Toll-free voice-first IVR powered by Bhashini (12+ dialects).','WhatsApp Business audio confirmations and SMS price alerts.','FSP-operated village kiosks and FPO collection hubs.']},
+    {n:4,t:'Customer Relationships',
+     s:['Escrow-backed forward contracts, 100% funds locked','Dedicated FSP handling at the farmgate','Digital QI certificate per batch (Grade A/B/C)','In-app, IVR and WhatsApp support'],
+     d:['Escrow-backed forward procurement contracts with locked prices.','Dedicated FSP handling and assisted onboarding at the farmgate.','Digital quality certificate cryptographically bound to each order.','In-app, IVR and WhatsApp support plus referral commissions.']},
+    {n:5,t:'Revenue Streams',
+     s:['3.0% B2B transaction fee on settled trade value','2.0% logistics arbitrage fee on FTL routing','1.0% optional T+0 instant settlement fee','6.0% blended take rate = ₹1,200 per MT'],
+     d:['3.0% B2B transaction fee on settled trade value.','2.0% logistics arbitrage fee on FTL routing.','1.0% optional T+0 instant settlement fee.']},
+    {n:6,t:'Key Resources',
+     s:['Computer-vision AI grading stack','Handheld NIR spectrometers (4-parameter QI)','Microservices cloud platform, offline-first','FSP network, FPO hubs, escrow / NBFC rails'],
+     d:['Computer-vision AI grading stack and handheld NIR units.','Microservices cloud platform with offline-first sync.','FSP network, FPO hubs and escrow/NBFC rails.']},
+    {n:7,t:'Key Activities',
+     s:['Farmgate collection and FTL aggregation','AI + NIR grading and QI scoring in under 10 min','Buyer acquisition, escrow settlement, T+0 payouts','Route optimisation and e-way bill compliance'],
+     d:['Farmgate collection and FTL aggregation.','AI + NIR grading and QI scoring.','Buyer acquisition, escrow settlement, T+0 payouts.']},
+    {n:8,t:'Key Partners',
+     s:['FPOs, village entrepreneurs and FSPs','Fintech / NBFC partners funding T+0 payouts','3PL and FTL operators; NIR hardware vendors','Bhashini, AgriStack, DigiLocker, Agmarknet'],
+     d:['FPOs, village entrepreneurs and FSP micro-fulfilment managers.','Fintech / NBFC partners funding T+0 farmgate payouts.','3PL and FTL logistics operators; NIR hardware vendors.','Bhashini, AgriStack, DigiLocker and Agmarknet API providers.']},
+    {n:9,t:'Cost Structure',
+     s:['Fixed: cloud, engineering, NIR/AI hardware','Variable: FSP fee 1.5-2.0%, logistics 3%','Growth: B2B buyer acquisition and GTM','Reserve: working capital and contingency'],
+     d:['Fixed: cloud infrastructure, engineering, NIR/AI hardware, compliance.','Variable: FSP fulfilment fees (1.5% - 2.0%), FTL logistics, payment rails.','Growth: B2B buyer acquisition and GTM campaigns.','Reserve: working capital and contingency.']}
+  ];
+  $('#bmc').innerHTML = BMC.map(function(b){
+    return '<article class="card blk"><div class="blk-in"><div class="n">'+b.n+'</div><h3>'+b.t+'</h3><ul class="pts">' +
+      b.s.map(function(x){ return '<li>'+x.replace(/&/g,'&amp;')+'</li>'; }).join('') +
+      '</ul></div><details><summary>Full detail</summary><div class="detail">' +
+      b.d.map(function(x){ return '<p>'+x.replace(/&/g,'&amp;')+'</p>'; }).join('') +
+      '</div></details></article>';
+  }).join('');
+  var allOpen = false;
+  $('#bmcAll').addEventListener('click', function(){
+    allOpen = !allOpen;
+    $$('#bmc details').forEach(function(d){ d.open = allOpen; });
+    this.textContent = allOpen ? 'Collapse all details' : 'Expand all details';
+    this.classList.toggle('on', allOpen);
+  });
+})();
+</script>
+</body>
+</html>
